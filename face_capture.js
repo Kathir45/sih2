@@ -126,6 +126,7 @@ captureBtn.addEventListener("click", async () => {
         window.location.href = "signout.html";
       } else {
         alert("Authentication failed. Images do not match.");
+        window.location.href = "authenticate.html";
       }
     } else {
       // No existing image, add the new one
