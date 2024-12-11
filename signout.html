@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Sign Out</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Add Your Details</a>
+      <div class="navbar-nav ml-auto">
+        <a class="nav-item nav-link" href="#" id="signoutbtn">Sign Out</a>
+      </div>
+    </nav>
+    <div class="container1">
+      <div class="todo-app">
+        <h2>
+          Enter Your Adhaar Details
+          <img
+            src="images/png-transparent-checkmark-done-exam-list-pencil-todo-xomo-basics-icon-thumbnail.png"
+            width="100px"
+            alt=""
+          />
+        </h2>
+        <div class="row1">
+          <label for="input_box_1">Name:</label>
+          <input type="text" id="input_box_1" class="input-box" data-field-name="field1" placeholder="Name(As per Adhaar)" required>
+          <label for="input_box_1">Adhaar Number:</label>
+          <input type="number" pattern=".{12,12}" id="input_box_2" class="input-box" data-field-name="field2" placeholder="Adhaar Number" required>
+          <label for="input_box_1">Mobile Number:</label>
+          <input type="number" id="input_box_3" class="input-box" data-field-name="field3" placeholder="Mobile Number(Linked With Adhaar)" required>
+          <label for="input_box_1">Date Of Birth:</label>
+          <input type="date" id="input_box_4" class="input-box" data-field-name="field4" placeholder="Date Of Birth(DD-MM-YYYY)" required>
+             
+          <br>
+          
+          <button id="add">SUBMIT</button>
+        </div>
+        <ul id="list-container"></ul>
+      </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="page1.js" type="module"></script>
+    <!-- <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+import { getFirestore, collection, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
+import { firebaseConfig } from "./config.js";
+
+// Initialize Firebase
+const firebaseApp = initializeApp(firebaseConfig);
+const db = getFirestore(firebaseApp);
+
+// Generate or retrieve a unique device ID
+const getDeviceId = () => {
+  let deviceId = localStorage.getItem("uniqueDeviceId");
+  if (!deviceId) {
+    deviceId = crypto.randomUUID(); // Generate a unique ID
+    localStorage.setItem("uniqueDeviceId", deviceId);
+  }
+  return deviceId;
+};
+
+const deviceId = getDeviceId();
+
+// Check if the device is already registered in Firestore
+async function checkDeviceId(deviceId) {
+  const deviceDoc = doc(db, "devices", deviceId);
+  const deviceSnapshot = await getDoc(deviceDoc);
+
+  if (deviceSnapshot.exists()) {
+    alert("A request has already been made from this device.");
+    return true;
+  } else {
+    return false;
+  }
+}
+
+// Add the unique device ID to Firestore
+async function addDeviceId(deviceId) {
+  const deviceDoc = doc(db, "devices", deviceId);
+  await setDoc(deviceDoc, { registeredAt: new Date() });
+  alert("Device registered successfully.");
+}
+
+// On page load, check and add the device ID
+(async () => {
+  const isDeviceRegistered = await checkDeviceId(deviceId);
+  if (!isDeviceRegistered) {
+    await addDeviceId(deviceId);
+  }
+})();
+
+    </script> -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
+import { firebaseConfig } from "./config.js";
+
+// Initialize Firebase
+const firebaseApp = initializeApp(firebaseConfig);
+const db = getFirestore(firebaseApp);
+
+const getDeviceId = () => {
+  let deviceId = localStorage.getItem("uniqueDeviceId");
+  if (!deviceId) {
+    deviceId = crypto.randomUUID();
+    localStorage.setItem("uniqueDeviceId", deviceId);
+  }
+  return deviceId;
+};
+
+const deviceId = getDeviceId();
+
+async function checkDeviceId(deviceId) {
+  const deviceDoc = doc(db, "devices", deviceId);
+  const deviceSnapshot = await getDoc(deviceDoc);
+
+  if (deviceSnapshot.exists()) {
+    // Redirect to authenticate page if already registered
+    alert("Device already registered. Redirecting to authentication page...");
+    window.location.href = "authenticate.html";
+  } else {
+    // Register the device
+    await setDoc(deviceDoc, { registeredAt: new Date(), image: null });
+    alert("Device registered successfully.");
+  }
+}
+
+// On page load, check and register the device
+(async () => {
+  await checkDeviceId(deviceId);
+})();
+
+  </script>
+  
+  </body>
+</html>

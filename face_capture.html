@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Face Capture</title>
+  <style>
+    /* Face Capture Page */
+.capture-container {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.camera-view {
+  width: 100%;
+  max-width: 400px;
+  margin: 20px 0;
+  border: 5px solid #fff;
+  border-radius: 15px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn {
+  background: #4caf50;
+  color: #fff;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 255, 0, 0.2);
+}
+
+  </style>
+  <!-- Include Firebase libraries -->
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js"></script>
+</head>
+<body>
+  <div class="capture-container">
+    <h1>Face Capture</h1>
+    <p>Position your face in front of the camera and click "Capture".</p>
+    <video id="video" autoplay playsinline class="camera-view"></video>
+    <button id="capture" class="btn">Capture</button>
+    <canvas id="canvas" style="display: none;"></canvas>
+  </div>
+  <script type="module" src="face_capture.js"></script>
+  <!-- <script defer src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api@1.0.1/dist/face-api.min.js"></script> -->
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Authenticate</title>
+  <style>
+    /* General Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #6b73ff, #000dff);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+p {
+  margin: 10px 0 20px;
+  font-size: 1.2rem;
+}
+
+/* Authentication Page */
+.auth-container {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn {
+  background: #ff6b6b;
+  color: #fff;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: #ff3b3b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.2);
+}
+
+  </style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="auth-container">
+    <h1>Authenticate</h1>
+    <p>Please authenticate yourself to proceed.</p>
+    <button id="authenticate" class="btn">Authenticate</button>
+  </div>
+  <script>
+    const authenticateBtn = document.getElementById("authenticate");
+
+// Redirect to the camera page for authentication
+authenticateBtn.addEventListener("click", () => {
+  window.location.href = "face_capture.html";
+});
+
+  </script>
+</body>
+</html>
