@@ -19,7 +19,7 @@
 
 // if (!taskData) {
 //   alert("No task data found. Redirecting to the main page.");
-//   window.location.href = "index.html";
+//   window.location.href = "signout.html";
 // }
 
 // // Request camera permissions and start the video stream
